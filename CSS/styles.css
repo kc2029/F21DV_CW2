@@ -1,0 +1,26 @@
+/* # for id | . for class */
+
+#container {
+    height: 1440px;
+    width: 1080px; 
+    margin: 0 auto;
+    overflow: hidden;
+    background-image: url("paper.gif");
+  }
+  .content {
+    height: 1440px;
+    width: 1080px;
+    margin: 0 auto;
+    display: flex;  
+    font-size: 48px;
+  }
+
+  body, html {
+    height: 100%;
+  }
+
+  #box{
+    height: 500px;
+    width: 500px; 
+    display: none;
+  }

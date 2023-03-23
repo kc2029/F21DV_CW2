@@ -1,18 +1,27 @@
 /* # for id | . for class */
 
 #container {
-    height: 1440px;
-    width: 1080px; 
-    margin: 0 auto;
-    overflow: hidden;
-    background-image: url("paper.gif");
-  }
+  height: 1440px;
+  width: 1080px; 
+  margin: 0 auto;
+  overflow: hidden;
+  background-size:contain;
+  background-image: url("https://raw.githubusercontent.com/kc2029/F21DV_CW2/main/resource/gamepad-1532528_960_720.jpg");
+
+}
+#page2{
+  background-size:contain;
+
+  background-image: url("https://raw.githubusercontent.com/kc2029/F21DV_CW2/main/resource/gamepad-1532528_960_720.jpg");
+
+}
   .content {
     height: 1440px;
     width: 1080px;
     margin: 0 auto;
     display: flex;  
     font-size: 48px;
+
   }
 
   body, html {

@@ -12,7 +12,7 @@ const margin = {top: 30, right: 30, bottom: 70, left: 60},
   
 
 // Parse the Data
-d3.csv("https://raw.githubusercontent.com/holtzy/data_to_viz/master/Example_dataset/7_OneCatOneNum_header.csv").then( function(data) {
+d3.csv("ss").then( function(data) {
 
 // X axis
 const x = d3.scaleBand()

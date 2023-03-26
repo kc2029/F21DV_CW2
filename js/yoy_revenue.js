@@ -35,7 +35,7 @@ d3.csv("./resource/data/gamingIndustry.csv").then(function (data) {
       }),
     };
   });
-  console.log(dataReady);
+  // console.log(dataReady);
 
   // A color scale: one color for each group
   const myColor = d3.scaleOrdinal().domain(allGroup).range(d3.schemeSet2);

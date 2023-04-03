@@ -1,7 +1,7 @@
 // set the dimensions and margins of the graph
 const margin = { top: 70, right: 150, bottom: 70, left: 60 },
-  width = 460 - margin.left - margin.right,
-  height = 400 - margin.top - margin.bottom;
+  width = 760 - margin.left - margin.right,
+  height = 550 - margin.top - margin.bottom;
 
 const svg = d3
   .select("#yoyBar")
@@ -89,6 +89,19 @@ d3.csv("./resource/data/gamingIndustry.csv").then(function (data) {
     .attr("r", 5)
     .attr("stroke", "white");
 
+  const tooltip = d3
+    .select("#page4")
+    .append("div")
+    .style("opacity", 0)
+    .attr("class", "tooltip")
+    .style("background-color", "white")
+    .style("border", "solid")
+    .style("border-width", "1px")
+    .style("border-radius", "5px")
+    .style("padding", "1px")
+    .style("font-size", "12px")
+    .style("height", "35px");
+
   // Add a legend at the end of each line
   svg
     .selectAll("myLabels")
@@ -140,9 +153,9 @@ d3.csv("./resource/data/gamingIndustry.csv").then(function (data) {
 
   svg
     .append("text")
-    .attr("x", width - 90)
-    .attr("y", margin.top / 2 - 60)
+    .attr("x", width - 190)
+    .attr("y", margin.top / 2 - 70)
     .attr("text-anchor", "middle")
     .style("font-size", "20px")
-    .text("Current and future UK Gaming Revenue");
+    .text("Current and future UK Gaming Revenue Forecast");
 });

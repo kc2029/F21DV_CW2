@@ -1,13 +1,13 @@
 d3.csv("./resource/data/MarketValue2.csv", d3.autoType).then(function (data) {
   // set the dimensions and margins of the graph
   const margin = { top: 50, right: 30, bottom: 20, left: 60 },
-    width = 560 - margin.left - margin.right,
-    height = 500 - margin.top - margin.bottom;
+    width = 1000 - margin.left - margin.right,
+    height = 600 - margin.top - margin.bottom;
 
   // append the svg object to the body of the page
 
   const svg = d3
-    .select("#page4")
+    .select("#gameStack")
     .append("svg")
     .attr("id", "stackedB")
     .attr("width", width + margin.left + margin.right)

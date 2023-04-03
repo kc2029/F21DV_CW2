@@ -1,12 +1,12 @@
 d3.csv("./resource/data/gamingReachAge.csv").then(function (data) {
   // set the dimensions and margins of the graph
-  const margin = { top: 10, right: 30, bottom: 50, left: 50 },
+  const margin = { top: 70, right: 30, bottom: 50, left: 50 },
     width = 900 - margin.left - margin.right,
-    height = 400 - margin.top - margin.bottom;
+    height = 700 - margin.top - margin.bottom;
 
   // append the svg object to the body of the page
   const svg = d3
-    .select("#page1")
+    .select("#gameReach") // update the selector to match the ID of the HTML element
     .append("svg")
     .attr("width", width + margin.left + margin.right)
     .attr("height", height + margin.top + margin.bottom)
@@ -15,7 +15,7 @@ d3.csv("./resource/data/gamingReachAge.csv").then(function (data) {
 
   const subgroups = data.columns.slice(1);
   const groups = data.map((d) => d.group);
-  console.log(subgroups);
+  // console.log(subgroups);
 
   // Add X axis
   const x = d3.scaleBand().domain(groups).range([0, width]).padding([0.2]);
@@ -57,7 +57,7 @@ d3.csv("./resource/data/gamingReachAge.csv").then(function (data) {
   function mouseover(event) {
     // Get the class of the hovered element
     const hoveredClass = d3.select(this).attr("id");
-    console.log(hoveredClass);
+    // console.log(hoveredClass);
     // Hide all bars except those with the hovered class
     svg
       .selectAll(".groupbar:not(#" + hoveredClass + ")")
@@ -68,7 +68,12 @@ d3.csv("./resource/data/gamingReachAge.csv").then(function (data) {
 
   function mouseleave() {
     // Show all bars
-    svg.selectAll(".groupbar").transition().duration(500).style("opacity", 1);
+    svg
+      .selectAll(".groupbar")
+      .interrupt()
+      .transition()
+      .duration(500)
+      .style("opacity", 1);
   }
 
   // Show the bars
@@ -130,7 +135,7 @@ d3.csv("./resource/data/gamingReachAge.csv").then(function (data) {
     .attr("alignment-baseline", "middle")
     .on("mouseover", function (event, d) {
       let name = "group" + d;
-      console.log(name);
+      // console.log(name);
       svg
         .selectAll(".groupbar:not(#" + name + ")")
         .transition()
@@ -144,11 +149,11 @@ d3.csv("./resource/data/gamingReachAge.csv").then(function (data) {
   //Title Label
   svg
     .append("text")
-    .attr("x", width - 500)
-    .attr("y", margin.top / 2)
-
+    .attr("x", width - 450)
+    .attr("y", margin.top / 2 - 60)
     .attr("text-anchor", "middle")
-    .style("font-size", "20px")
+    .style("font-size", "25px")
+    .style("font-weight", "bold")
     .text("Percentage of people who play games by age and gender group");
 
   // Y axis label

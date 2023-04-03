@@ -7,7 +7,7 @@ d3.csv("./resource/data/MarketValue2.csv", d3.autoType).then(function (data) {
   // append the svg object to the body of the page
 
   const svg = d3
-    .select("#page1")
+    .select("#page4")
     .append("svg")
     .attr("id", "stackedB")
     .attr("width", width + margin.left + margin.right)
@@ -71,7 +71,7 @@ d3.csv("./resource/data/MarketValue2.csv", d3.autoType).then(function (data) {
   //
   //
   const tooltip = d3
-    .select("#page1")
+    .select("#page4")
     .append("div")
     .style("opacity", 0)
     .attr("class", "tooltip")

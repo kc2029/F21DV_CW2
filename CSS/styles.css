@@ -11,12 +11,36 @@
 
 }
 
-#page1{
-  background-size:contain;
-
-  background-image: url("https://raw.githubusercontent.com/kc2029/F21DV_CW2/main/resource/gamepad-1532528_960_720.jpg");
-  position: relative;
+/* Title Page CSS */
+#page1 {
+  background-image: url("https://raw.githubusercontent.com/kc2029/F21DV_CW2/main/resource/image/titlePage.jpg");
+  background-size: cover;
+  background-position: center center;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  /* align-items: center; */
+  width: 100%;
 }
+
+#title1 {
+  font-size: 50px;
+  color: white;
+  text-align: center;
+  font-weight: bold;
+  display: block;
+  margin-top: -50px;
+}
+
+#instruction {
+  font-size: 20px;
+  color: white;
+  text-align: center;
+  display: block;
+}
+
+
+/* Page 2 CSS */
 
 #page2{
   background-size:contain;

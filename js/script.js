@@ -39,23 +39,3 @@ document.addEventListener("keydown", (event) => {
     });
   }
 });
-
-document.addEventListener("wheel", function (event) {
-  // Check if the user is scrolling down
-  if (event.deltaY > 0) {
-    // Restart the animation
-    document.getElementById("animation").classList.remove("play");
-    void document.getElementById("animation").offsetWidth;
-    document.getElementById("animation").classList.add("play");
-  }
-});
-
-document.addEventListener("keydown", function (event) {
-  // Check if the user pressed the down arrow key
-  if (event.keyCode === 40) {
-    // Restart the animation
-    document.getElementById("animation").classList.remove("play");
-    void document.getElementById("animation").offsetWidth;
-    document.getElementById("animation").classList.add("play");
-  }
-});

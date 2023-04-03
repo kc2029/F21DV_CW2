@@ -1,12 +1,14 @@
 // Parse the Data
-d3.csv("./resource/data/gTrend.csv").then(function (data) {
+d3.csv(
+  "https://raw.githubusercontent.com/kc2029/F21DV_CW2/main/resource/data/gTrend.csv"
+).then(function (data) {
   // set the dimensions and margins of the graph
-  const margin = { top: 70, right: 150, bottom: 70, left: 60 },
-    width = 600 - margin.left - margin.right,
-    height = 400 - margin.top - margin.bottom;
+  const margin = { top: 70, right: 90, bottom: 70, left: 90 },
+    width = 850 - margin.left - margin.right,
+    height = 500 - margin.top - margin.bottom;
 
   const svg = d3
-    .select("#page3")
+    .select("#gameTrendSVG")
     .append("svg")
     .attr("id", "gameTrend")
     .attr(
@@ -62,7 +64,7 @@ d3.csv("./resource/data/gTrend.csv").then(function (data) {
     .attr("class", (d) => d.name.replace(/ /g, "_"))
     .attr("d", (d) => line(d.values))
     .attr("stroke", (d) => myColor(d.name))
-    .style("stroke-width", 1)
+    .style("stroke-width", 2)
     .style("fill", "none");
 
   /**
@@ -87,7 +89,8 @@ d3.csv("./resource/data/gTrend.csv").then(function (data) {
         console.log(path); // check the path value
         return d3.line()(path);
       })
-      .attr("stroke", (d) => myColor(d.name));
+      .attr("stroke", (d) => myColor(d.name))
+      .style("stroke-width", 3);
   }
 
   let lineVisible = false;
@@ -108,7 +111,7 @@ d3.csv("./resource/data/gTrend.csv").then(function (data) {
 
   button
     .append("rect")
-    .attr("x", width - 375)
+    .attr("x", width - 575)
     .attr("y", -10)
     .attr("width", 100)
     .attr("height", 30)
@@ -118,28 +121,29 @@ d3.csv("./resource/data/gTrend.csv").then(function (data) {
   button
     .append("text")
     .text("Line of Best Fit")
-    .attr("x", width - 370) // adjust the x position of the text
+    .attr("x", width - 570) // adjust the x position of the text
     .attr("y", 8) // adjust the y position of the text
     .style("fill", "white")
     .style("font-size", "14px");
 
-  //dots
-  svg
-    // First we need to enter in a group
-    .selectAll(".dotGroup")
-    .data(dataReady)
-    .join("g")
-    .attr("class", (d) => d.name.replace(/ /g, "_"))
-    .style("fill", (d) => myColor(d.name))
-    // Second we need to enter in the 'values' part of this group
-    .selectAll(".dot")
-    .data((d) => d.values)
-    .join("circle")
-    .attr("class", "dot")
-    .attr("cx", (d) => x(d.time))
-    .attr("cy", (d) => y(d.value))
-    .attr("r", 1)
-    .attr("stroke", "white");
+  // //dots
+  // svg
+  //   // First we need to enter in a group
+  //   .selectAll(".dotGroup")
+  //   .data(dataReady)
+  //   .join("g")
+  //   .attr("class", (d) => d.name.replace(/ /g, "_"))
+  //   .style("fill", (d) => color(d.name))
+
+  //   // Second we need to enter in the 'values' part of this group
+  //   .selectAll(".dot")
+  //   .data((d) => d.values)
+  //   .join("circle")
+  //   .attr("class", "dot")
+  //   .attr("cx", (d) => x(d.time))
+  //   .attr("cy", (d) => y(d.value))
+  //   .attr("stroke", "white")
+  //   .attr("r", 1);
 
   // Add a legend at the end of each line
   svg
@@ -191,9 +195,10 @@ d3.csv("./resource/data/gTrend.csv").then(function (data) {
 
   svg
     .append("text")
-    .attr("x", width - 180)
-    .attr("y", margin.top / 2 - 60)
+    .attr("x", width - 280)
+    .attr("y", margin.top / 2 - 80)
     .attr("text-anchor", "middle")
-    .style("font-size", "20px")
+    .style("font-size", "25px")
+    .style("font-weight", "bold")
     .text("Prevalance of games with Cosmetic, pay to win or lootbox");
 });

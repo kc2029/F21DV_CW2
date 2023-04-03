@@ -1,6 +1,6 @@
 d3.csv("./resource/data/MarketValue2.csv", d3.autoType).then(function (data) {
   // set the dimensions and margins of the graph
-  const margin = { top: 50, right: 30, bottom: 20, left: 60 },
+  const margin = { top: 80, right: 30, bottom: 20, left: 80 },
     width = 1000 - margin.left - margin.right,
     height = 600 - margin.top - margin.bottom;
 
@@ -81,7 +81,9 @@ d3.csv("./resource/data/MarketValue2.csv", d3.autoType).then(function (data) {
     .style("border-radius", "5px")
     .style("padding", "1px")
     .style("font-size", "12px")
+    .style("max-width", "150px")
     .style("height", "35px");
+
   function mouseover(event, d) {
     const subgroupName = d3.select(this.parentNode).datum().key;
     const subgroupValue = d.data[subgroupName];
@@ -92,8 +94,8 @@ d3.csv("./resource/data/MarketValue2.csv", d3.autoType).then(function (data) {
 
   const mousemove = function (event, d) {
     // Calculate the x and y positions of the tooltip
-    const xPosition = event.pageX - 680;
-    const yPosition = event.pageY;
+    const xPosition = event.pageX;
+    const yPosition = event.pageY - 520;
 
     tooltip
       .style("transform", `translate(${xPosition}px, ${yPosition}px)`)
@@ -140,13 +142,17 @@ d3.csv("./resource/data/MarketValue2.csv", d3.autoType).then(function (data) {
     .attr("dy", "1em")
     .style("text-anchor", "middle")
     .attr("font-size", "20")
+    .style("font-weight", "bold")
+
     .text("Billions($)");
 
   svg
     .append("text")
-    .attr("x", width - 300)
-    .attr("y", margin.top / 2 - 60)
+    .attr("x", width - 500)
+    .attr("y", margin.top / 2 - 70)
     .attr("text-anchor", "middle")
-    .style("font-size", "20px")
-    .text("Current and Future UK Gaming valuation ");
+
+    .text("UK Gaming revene split")
+    .style("font-size", "25px")
+    .style("font-weight", "bold");
 });

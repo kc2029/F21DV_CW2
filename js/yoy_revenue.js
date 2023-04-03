@@ -157,5 +157,5 @@ d3.csv("./resource/data/gamingIndustry.csv").then(function (data) {
     .attr("y", margin.top / 2 - 70)
     .attr("text-anchor", "middle")
     .style("font-size", "20px")
-    .text("Current and future UK Gaming Revenue Forecast");
+    .text("Year on year revenue");
 });

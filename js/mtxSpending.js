@@ -16,7 +16,7 @@ d3.csv(
     .attr("transform", `translate(${margin.left}, ${margin.top})`);
 
   // Add X axis
-  const x = d3.scaleLinear().domain([-1, 6]).range([0, width]);
+  const x = d3.scaleLinear().domain([0, 110]).range([0, width]);
 
   svg
     .append("g")
@@ -29,7 +29,7 @@ d3.csv(
     .range([0, height])
     .domain(
       data.map(function (d) {
-        return d.game;
+        return d.game.replace(/ /g, "_");
       })
     )
     .padding(1);
@@ -41,19 +41,20 @@ d3.csv(
     .data(data)
     .join("line")
     .attr("x1", function (d) {
-      return x(d.Women);
+      return x(d.women);
     })
     .attr("x2", function (d) {
-      return x(d.Men);
+      return x(d.men);
     })
     .attr("y1", function (d) {
-      return y(d.game);
+      return y(d.game.replace(/ /g, "_"));
     })
     .attr("y2", function (d) {
-      return y(d.game);
+      return y(d.game.replace(/ /g, "_"));
     })
-    .attr("stroke", "grey")
-    .attr("stroke-width", "1px");
+    .attr("stroke", "black")
+    .attr("stroke-width", "5px");
+  console.log(data);
 
   // Circles of variable 1
   svg
@@ -61,13 +62,14 @@ d3.csv(
     .data(data)
     .join("circle")
     .attr("cx", function (d) {
-      return x(d.Women);
+      console.log(d.women);
+      return x(d.women);
     })
     .attr("cy", function (d) {
-      return y(d.game);
+      return y(d.game.replace(/ /g, "_"));
     })
-    .attr("r", "6")
-    .style("fill", "#69b3a2");
+    .attr("r", "10")
+    .style("fill", "black");
 
   // Circles of variable 2
   svg
@@ -75,10 +77,10 @@ d3.csv(
     .data(data)
     .join("circle")
     .attr("cx", function (d) {
-      return x(d.Men);
+      return x(d.men);
     })
     .attr("cy", function (d) {
-      return y(d.game);
+      return y(d.game.replace(/ /g, "_"));
     })
     .attr("r", "6")
     .style("fill", "#4C4082");

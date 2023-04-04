@@ -240,7 +240,6 @@ body {
   transform: translate(10%, -7%);
 }
 
-
 #p5p2 {
   font-size: 35px;
   margin-left: 700px;
@@ -261,17 +260,121 @@ body {
   transform: translate(20%, -50%);
 }
 
-
-
 /* page 6 CSS */
+#p6Title {
+  color: rgb(255, 255, 255);
+  font-size: 50px;
+  margin-left: 50px;
+}
 
 #page6 {
   display: flex;
   flex-direction: column;
   background-color: rgb(252, 248, 248);
   background-size: contain;
-  /* background-image: url("https://raw.githubusercontent.com/kc2029/F21DV_CW2/main/resource/image/pcTable.jpg"); */
+  background-image: url("https://github.com/kc2029/F21DV_CW2/blob/main/resource/image/handwithcoin.jpg?raw=true");
   background-size: cover;
   background-position: center center;
   position: relative;
-}  
+}
+
+.tooltipDot {
+  border-radius: 5px;
+  font-size: 25px;
+}
+
+#mtxSpend {
+  background-color: rgba(252, 252, 252, 0.7);
+  position: absolute;
+  top: 40%;
+  right: 30%;
+  transform: translate(-70%, -60%);
+  width: 750px;
+  height: 500px;
+}
+
+#p6p1 {
+  font-size: 35px;
+
+  max-width: 750px;
+  background-color: rgba(255, 255, 255, 0.6);
+  border: 1px solid #000000;
+  border-radius: 5px;
+  border-width: 1px;
+  box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.5);
+  color: #000000;
+  font-family: Arial, sans-serif;
+  font-weight: normal;
+  padding: 10px;
+  position: relative;
+  text-align: left;
+  transform: translate(120%, 0%);
+}
+
+#p6p2 {
+  font-size: 35px;
+  font-weight: bold;
+  max-width: 750px;
+  max-height: 350px;
+  background-color: rgba(255, 255, 255, 0.6);
+  border: 1px solid #000000;
+  border-radius: 5px;
+  border-width: 1px;
+  box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.5);
+  color: #000000;
+  font-family: Arial, sans-serif;
+  font-weight: normal;
+  padding: 10px;
+  position: relative;
+  text-align: left;
+  transform: translate(7%, -15%);
+}
+
+#p6p3 {
+  font-size: 35px;
+  font-weight: bold;
+  width: 750px;
+  max-width: 750px;
+  background-color: rgba(255, 255, 255, 0.6);
+  border: 1px solid #000000;
+  border-radius: 5px;
+  border-width: 1px;
+  box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.5);
+  color: #000000;
+  font-family: Arial, sans-serif;
+  font-weight: normal;
+  padding: 10px;
+  position: relative;
+  text-align: left;
+  transform: translate(112%, -110%);
+}
+
+#list1 {
+  font-size: 25px;
+}
+
+#page7 {
+  display: flex;
+  flex-direction: column;
+  background-color: rgb(161, 153, 153);
+  background-size: contain;
+  background-image: url("https://github.com/kc2029/F21DV_CW2/blob/main/resource/image/handwithcoin.jpg?raw=true");
+  background-size: cover;
+  background-position: center center;
+  position: relative;
+}
+
+#p7Title {
+  color: rgb(255, 255, 255);
+  font-size: 50px;
+  margin-left: 50px;
+}
+#onlineGambling {
+  background-color: rgba(252, 252, 252, 0.7);
+  position: absolute;
+  top: 40%;
+  right: 30%;
+  transform: translate(0%, 0%);
+  width: 900px;
+  height: 700px;
+}

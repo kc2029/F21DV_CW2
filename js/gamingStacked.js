@@ -1,4 +1,7 @@
-d3.csv("./resource/data/MarketValue2.csv", d3.autoType).then(function (data) {
+d3.csv(
+  "https://raw.githubusercontent.com/kc2029/F21DV_CW2/main/resource/data/MarketValue2.csv",
+  d3.autoType
+).then(function (data) {
   // set the dimensions and margins of the graph
   const margin = { top: 80, right: 30, bottom: 20, left: 80 },
     width = 1000 - margin.left - margin.right,
@@ -22,6 +25,7 @@ d3.csv("./resource/data/MarketValue2.csv", d3.autoType).then(function (data) {
   console.log(data);
 
   const x = d3.scaleBand().domain(groups).range([0, width]).padding([0.2]);
+
   svg
     .append("g")
     .attr("transform", `translate(0, ${height})`)

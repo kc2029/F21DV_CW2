@@ -7,8 +7,9 @@ let currentPosition = 0;
 
 //scroll pages
 const pages = document.querySelectorAll(".content");
+
 const maxPosition = pages.length - 1;
-console.log(pages);
+console.log("here " + pages);
 
 container.addEventListener("wheel", (event) => {
   event.preventDefault();
@@ -20,6 +21,8 @@ container.addEventListener("wheel", (event) => {
     top: currentPosition * container.clientHeight,
     behavior: "smooth",
   });
+  // console.log(Array.from(pages));
+  console.log(currentPosition);
 });
 
 document.addEventListener("keydown", (event) => {

@@ -155,7 +155,6 @@ d3.csv(
     .attr("x", width - 500)
     .attr("y", margin.top / 2 - 70)
     .attr("text-anchor", "middle")
-
     .text("UK Gaming revene split")
     .style("font-size", "25px")
     .style("font-weight", "bold");

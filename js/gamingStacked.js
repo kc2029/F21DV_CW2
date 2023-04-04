@@ -98,8 +98,8 @@ d3.csv(
 
   const mousemove = function (event, d) {
     // Calculate the x and y positions of the tooltip
-    const xPosition = event.pageX;
-    const yPosition = event.pageY - 520;
+    const xPosition = event.pageX - 300;
+    const yPosition = event.pageY - 600;
 
     tooltip
       .style("transform", `translate(${xPosition}px, ${yPosition}px)`)

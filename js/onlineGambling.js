@@ -1,4 +1,6 @@
-d3.csv("./resource/data/onlineGambling.csv").then(function (data) {
+d3.csv(
+  "https://raw.githubusercontent.com/kc2029/F21DV_CW2/main/resource/data/onlineGambling.csv"
+).then(function (data) {
   // set the dimensions and margins of the graph
   const margin = { top: 70, right: 30, bottom: 50, left: 50 },
     width = 900 - margin.left - margin.right,

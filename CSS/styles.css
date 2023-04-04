@@ -198,7 +198,7 @@ body {
   flex-direction: column;
   background-color: rgb(109, 104, 104);
   background-size: contain;
-  background-image: url("https://raw.githubusercontent.com/kc2029/F21DV_CW2/main/resource/image/dropontroller.jpg");
+  background-image: url("https://raw.githubusercontent.com/kc2029/F21DV_CW2/main/resource/image/holdingController.jpg");
   background-size: cover;
   background-position: center center;
   position: relative;
@@ -267,7 +267,7 @@ body {
 #page6 {
   display: flex;
   flex-direction: column;
-  background-color: rgb(255, 255, 255);
+  background-color: rgb(104, 104, 104);
   background-size: contain;
   /* background-image: url("https://raw.githubusercontent.com/kc2029/F21DV_CW2/main/resource/image/pcTable.jpg"); */
   background-size: cover;

@@ -17,7 +17,6 @@ body {
   height: 100vh;
   max-width: 1920px;
   width: 100%;
-
   margin: 0 auto;
   overflow: hidden;
 }
@@ -39,17 +38,20 @@ body {
   color: white;
   text-align: center;
   font-weight: bold;
-  display: block;
-  margin-top: -50px;
+  margin-top: 450px;
 }
 
 #instruction {
   font-size: 20px;
   color: white;
   text-align: center;
-  display: block;
 }
-
+#disclaimer {
+  font-size: 20px;
+  color: rgb(251, 255, 13);
+  text-align: center;
+  margin-top: 450px;
+}
 /* Page 2 CSS */
 
 #page2 {
@@ -114,6 +116,16 @@ body {
   top: 40%;
   right: 30%;
   transform: translate(-20%, -30%);
+  width: 1000px;
+  height: 700px;
+}
+
+#gameReachPie {
+  /* background-color: rgba(255, 253, 253, 0.5); */
+  position: absolute;
+  top: 0%;
+  right: 30%;
+  transform: translate(105%, 0%);
   width: 1000px;
   height: 700px;
 }
@@ -353,6 +365,7 @@ body {
   font-size: 25px;
 }
 
+/* CSS for page 7 */
 #page7 {
   display: flex;
   flex-direction: column;

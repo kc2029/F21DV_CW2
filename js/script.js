@@ -3,13 +3,15 @@
 // const content2 = document.getElementById("page2");
 // const content3 = document.getElementById("page3");
 
-let currentPosition = 0;
+export let currentPosition = 0;
 
+export function getCurrentPosition() {
+  return currentPosition;
+}
 //scroll pages
 const pages = document.querySelectorAll(".content");
 
 const maxPosition = pages.length - 1;
-console.log("here " + pages);
 
 container.addEventListener("wheel", (event) => {
   event.preventDefault();

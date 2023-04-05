@@ -108,61 +108,64 @@ d3.csv(
     .attr("id", (d) => `group${d.key}`)
     .attr("class", "groupbar");
 
-  setInterval(() => {
+  let intervalId = setInterval(() => {
     const position = getCurrentPosition();
-    console.log(position);
     if (position === 1) {
+      clearInterval(intervalId); // Stop the interval
       // Transition the bars
       svg
         .selectAll("rect")
         .transition()
         .duration(100)
-        .delay((d, i) => i * 100)
+        .delay((d, i) => i * 50)
         .attr("y", (d) => y(d.value))
         .attr("height", (d) => height - y(d.value));
+
+      const legend = svg
+        .append("g")
+        .attr("class", "legend")
+        .attr("transform", `translate(${width / 8},${height + 20})`);
+
+      legend
+        .selectAll("rect")
+        .data(color.domain())
+        .enter()
+        .append("rect")
+        .attr("x", (d, i) => i * 80)
+        .attr("y", 0)
+        .attr("width", 10)
+        .attr("height", 10)
+        .style("fill", color);
+
+      legend
+        .selectAll("text")
+        .data(color.domain())
+        .enter()
+        .append("text")
+        .attr("id", (d) => "legend" + d.replace(/\W/g, ""))
+        .text((d) => d)
+        .attr("x", (d, i) => i * 80 + 15)
+        .attr("y", 10)
+        .style("font-size", "12px")
+        .attr("alignment-baseline", "middle")
+        .on("mouseover", function (event, d) {
+          let name = "group" + d;
+          // console.log(name);
+          svg
+            .selectAll(".groupbar:not(#" + name + ")")
+            .transition()
+            .duration(500)
+            .style("opacity", 0);
+        })
+        .on("mouseleave", function (event, d) {
+          svg
+            .selectAll(".groupbar")
+            .transition()
+            .duration(500)
+            .style("opacity", 1);
+        });
     }
   }, 1000);
-
-  const legend = svg
-    .append("g")
-    .attr("class", "legend")
-    .attr("transform", `translate(${width / 8},${height + 20})`);
-
-  legend
-    .selectAll("rect")
-    .data(color.domain())
-    .enter()
-    .append("rect")
-    .attr("x", (d, i) => i * 80)
-    .attr("y", 0)
-    .attr("width", 10)
-    .attr("height", 10)
-    .style("fill", color);
-
-  legend
-    .selectAll("text")
-    .data(color.domain())
-    .enter()
-    .append("text")
-    .attr("id", (d) => "legend" + d.replace(/\W/g, ""))
-    .text((d) => d)
-    .attr("x", (d, i) => i * 80 + 15)
-    .attr("y", 10)
-    .style("font-size", "12px")
-    .attr("alignment-baseline", "middle")
-    .on("mouseover", function (event, d) {
-      let name = "group" + d;
-      // console.log(name);
-      svg
-        .selectAll(".groupbar:not(#" + name + ")")
-        .transition()
-        .duration(500)
-        .style("opacity", 0);
-    })
-    .on("mouseleave", function (event, d) {
-      svg.selectAll(".groupbar").transition().duration(500).style("opacity", 1);
-    });
-
   //Title Label
   svg
     .append("text")

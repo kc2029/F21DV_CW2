@@ -1,3 +1,6 @@
+import { getCurrentPosition } from "./script.js";
+
+//Load gamingReachAge.csv
 d3.csv(
   "https://raw.githubusercontent.com/kc2029/F21DV_CW2/main/resource/data/gamingReachAge.csv"
 ).then(function (data) {
@@ -6,20 +9,21 @@ d3.csv(
     width = 900 - margin.left - margin.right,
     height = 700 - margin.top - margin.bottom;
 
-  // append the svg object to the body of the page
   const svg = d3
-    .select("#gameReach") // update the selector to match the ID of the HTML element
+    .select("#gameReach") // update the selector to match the ID
     .append("svg")
     .attr("width", width + margin.left + margin.right)
     .attr("height", height + margin.top + margin.bottom)
     .append("g")
     .attr("transform", `translate(${margin.left},${margin.top})`);
 
+  //first row value except the first one
   const subgroups = data.columns.slice(1);
-  const groups = data.map((d) => d.group);
-  // console.log(subgroups);
 
-  // Add X axis
+  //first column data except the first one
+  const groups = data.map((d) => d.group);
+
+  // Add X axis that scale with group value
   const x = d3.scaleBand().domain(groups).range([0, width]).padding([0.2]);
   svg
     .append("g")
@@ -33,11 +37,11 @@ d3.csv(
     .range([0, x.bandwidth()])
     .padding([0.05]);
 
-  // Add Y axis
+  // Add Y axis and scale to max value of 100%
   const y = d3.scaleLinear().domain([0, 100]).range([height, 0]);
   svg.append("g").call(d3.axisLeft(y));
 
-  // color palette
+  // color palette, 8 distinct colour for 8 column
   const color = d3
     .scaleOrdinal()
     .domain(subgroups)
@@ -53,21 +57,23 @@ d3.csv(
     ]);
 
   /**
-   * On Mouse over, make all the other bar opague and draw a line
+   * On Mouse over, make all the other bar opaque and draw a line
    * @date 26/03/2023 - 12:52:47
    */
   function mouseover(event) {
-    // Get the class of the hovered element
+    // Get the id of the hovered element
     const hoveredClass = d3.select(this).attr("id");
-    // console.log(hoveredClass);
     // Hide all bars except those with the hovered class
     svg
-      .selectAll(".groupbar:not(#" + hoveredClass + ")")
+      .selectAll(".groupbar:not(#" + hoveredClass + ")") //select everything else
       .transition()
       .duration(500)
       .style("opacity", 0);
   }
 
+  /**
+   * On mouse leave, set everything visible
+   */
   function mouseleave() {
     // Show all bars
     svg
@@ -78,7 +84,7 @@ d3.csv(
       .style("opacity", 1);
   }
 
-  // Show the bars
+  // Create the stacked bars
   svg
     .append("g")
     .selectAll("g")
@@ -95,18 +101,27 @@ d3.csv(
     .join("rect")
     .on("mouseover", mouseover)
     .on("mouseleave", mouseleave)
-
     .attr("x", (d) => xSubgroup(d.key))
     .attr("y", height)
     .attr("width", xSubgroup.bandwidth())
     .attr("fill", (d) => color(d.key))
     .attr("id", (d) => `group${d.key}`)
-    .attr("class", "groupbar")
-    .transition()
-    .duration(1000)
-    .delay((d, i) => i * 100)
-    .attr("y", (d) => y(d.value))
-    .attr("height", (d) => height - y(d.value));
+    .attr("class", "groupbar");
+
+  setInterval(() => {
+    const position = getCurrentPosition();
+    console.log(position);
+    if (position === 1) {
+      // Transition the bars
+      svg
+        .selectAll("rect")
+        .transition()
+        .duration(100)
+        .delay((d, i) => i * 100)
+        .attr("y", (d) => y(d.value))
+        .attr("height", (d) => height - y(d.value));
+    }
+  }, 1000);
 
   const legend = svg
     .append("g")

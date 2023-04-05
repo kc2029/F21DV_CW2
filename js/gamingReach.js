@@ -41,7 +41,7 @@ d3.csv(
   const y = d3.scaleLinear().domain([0, 100]).range([height, 0]);
   svg.append("g").call(d3.axisLeft(y));
 
-  // color palette, 8 distinct colour for 8 column
+  // color palette, 8 colour.
   const color = d3
     .scaleOrdinal()
     .domain(subgroups)
@@ -84,7 +84,7 @@ d3.csv(
       .style("opacity", 1);
   }
 
-  // Create the stacked bars
+  // Create the group bars
   svg
     .append("g")
     .selectAll("g")
@@ -108,6 +108,7 @@ d3.csv(
     .attr("id", (d) => `group${d.key}`)
     .attr("class", "groupbar");
 
+  //update the page number at set interval, and start the transition at page 1
   let intervalId = setInterval(() => {
     const position = getCurrentPosition();
     if (position === 1) {
@@ -150,7 +151,7 @@ d3.csv(
         .attr("alignment-baseline", "middle")
         .on("mouseover", function (event, d) {
           let name = "group" + d;
-          // console.log(name);
+
           svg
             .selectAll(".groupbar:not(#" + name + ")")
             .transition()
@@ -166,6 +167,7 @@ d3.csv(
         });
     }
   }, 1000);
+
   //Title Label
   svg
     .append("text")

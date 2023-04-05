@@ -1,3 +1,4 @@
+//load MarketValue2.csv
 d3.csv(
   "https://raw.githubusercontent.com/kc2029/F21DV_CW2/main/resource/data/MarketValue2.csv",
   d3.autoType
@@ -8,7 +9,6 @@ d3.csv(
     height = 600 - margin.top - margin.bottom;
 
   // append the svg object to the body of the page
-
   const svg = d3
     .select("#gameStack")
     .append("svg")
@@ -20,18 +20,22 @@ d3.csv(
 
   //List of headers
   const subgroups = data.columns.slice(1);
-  console.log(subgroups);
-  const groups = data.map((d) => d.year);
-  console.log(data);
+  //console.log(subgroups);
 
+  //first column data except the first one
+  const groups = data.map((d) => d.year);
+  //console.log(data);
+
+  //Set up x and padding to seperate bars
   const x = d3.scaleBand().domain(groups).range([0, width]).padding([0.2]);
 
+  //append the stacked bars
   svg
     .append("g")
     .attr("transform", `translate(0, ${height})`)
     .call(d3.axisBottom(x).tickSizeOuter(0));
 
-  //find the max row total
+  //return the sum of each row
   const totals = data.map((row) => {
     let sum = 0;
     for (const key in row) {
@@ -41,11 +45,14 @@ d3.csv(
         }
       }
     }
+
     return sum;
   });
+
+  //find max of totals
   const maxTotal = Math.max(...totals.filter((total) => !isNaN(total)));
 
-  // Add Y axis
+  // Add Y axis with maxTotal as doman
   const y = d3.scaleLinear().domain([0, maxTotal]).range([height, 0]);
   svg.append("g").call(d3.axisLeft(y));
 
@@ -69,11 +76,10 @@ d3.csv(
       "#999999",
     ]);
 
+  //create stack data
   const stackedData = d3.stack().keys(subgroups)(data);
 
-  //
-  //
-  //
+  //top tip set up
   const tooltip = d3
     .select("#page4")
     .append("div")
@@ -88,6 +94,11 @@ d3.csv(
     .style("max-width", "150px")
     .style("height", "35px");
 
+  /**
+   * On mouse over a section, return name and value with tooltip
+   * @param {*} event
+   * @param {*} d
+   */
   function mouseover(event, d) {
     const subgroupName = d3.select(this.parentNode).datum().key;
     const subgroupValue = d.data[subgroupName];
@@ -96,6 +107,11 @@ d3.csv(
       .style("opacity", 1);
   }
 
+  /**
+   * Return a coordinate for tooltip
+   * @param {*} event
+   * @param {*} d
+   */
   const mousemove = function (event, d) {
     // Calculate the x and y positions of the tooltip
     const xPosition = event.pageX - 300;
@@ -106,6 +122,11 @@ d3.csv(
       .style("opacity", 1);
   };
 
+  /**
+   * On mouse leave remove tooltip
+   * @param {*} event
+   * @param {*} d
+   */
   function mouseleave(event, d) {
     tooltip.style("opacity", 0);
     // Back to normal opacity: 1
@@ -115,7 +136,7 @@ d3.csv(
   svg
     .append("g")
     .selectAll("g")
-    // Enter in the stack data = loop key per key = group per group
+    // Enter in the stack data  and loop key per key, group per group
     .data(stackedData)
     .join("g")
     .attr("fill", function (d) {
@@ -138,6 +159,7 @@ d3.csv(
     .on("mousemove", mousemove)
     .on("mouseleave", mouseleave);
 
+  //append y axis label
   svg
     .append("text")
     .attr("transform", "rotate(-90)")
@@ -150,6 +172,7 @@ d3.csv(
 
     .text("Billions($)");
 
+  //append title
   svg
     .append("text")
     .attr("x", width - 500)

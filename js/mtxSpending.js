@@ -1,3 +1,4 @@
+//Cleveland plot of mtx spending between male and female in selected game
 d3.csv(
   "https://raw.githubusercontent.com/kc2029/F21DV_CW2/main/resource/data/mtxSpend.csv"
 ).then(function (data) {
@@ -6,7 +7,7 @@ d3.csv(
     width = 700 - margin.left - margin.right,
     height = 500 - margin.top - margin.bottom;
 
-  // append the svg object to the body of the page
+  // append the svg object
   const svg = d3
     .select("#mtxSpend")
     .append("svg")
@@ -23,7 +24,7 @@ d3.csv(
     .attr("transform", `translate(0, ${height})`)
     .call(d3.axisBottom(x));
 
-  // Y axis
+  // Add Y axis
   const y = d3
     .scaleBand()
     .range([0, height])
@@ -35,7 +36,7 @@ d3.csv(
     .padding(1);
   svg.append("g").call(d3.axisLeft(y));
 
-  // Lines
+  // draw line between dots base on two point of Men and Women
   svg
     .selectAll("myline")
     .data(data)
@@ -56,7 +57,7 @@ d3.csv(
     .attr("stroke-width", "5px");
   console.log(data);
 
-  // Circles of variable 1
+  // Draw circle dot for women
   svg
     .selectAll("mycircle")
     .data(data)
@@ -76,26 +77,31 @@ d3.csv(
       // Add tooltip text
       var tooltip = svg.append("g").attr("class", "tooltipDot");
 
+      //set up tooltip background
       var tooltipBg = tooltip
         .append("rect")
         .style("fill", "white")
         .style("stroke", "black")
         .style("stroke-width", "1px");
 
+      //return value of the dot as text
       var tooltipText = tooltip
         .append("text")
         .text("$" + d.women)
         .style("text-anchor", "middle")
         .attr("dy", "0.35em");
 
+      //change border size depending on content
       var bbox = tooltipText.node().getBBox();
 
+      //change width and heigh
       tooltipBg
         .attr("width", bbox.width + 16)
         .attr("height", bbox.height + 16)
         .attr("x", bbox.x - 8)
         .attr("y", bbox.y - 8);
 
+      //position tooltip
       tooltip
         .attr(
           "transform",
@@ -112,7 +118,7 @@ d3.csv(
       svg.select(".tooltipDot").remove(); // Remove tooltip text
     });
 
-  // Circles of variable 2
+  // Draw circle dot for women
   svg
     .selectAll("mycircle")
     .data(data)
@@ -131,26 +137,31 @@ d3.csv(
       // Add tooltip text
       var tooltip = svg.append("g").attr("class", "tooltipDot");
 
+      //set up tooltip background
       var tooltipBg = tooltip
         .append("rect")
         .style("fill", "white")
         .style("stroke", "black")
         .style("stroke-width", "1px");
 
+      //return value of the dot as text
       var tooltipText = tooltip
         .append("text")
         .text("$" + d.men)
         .style("text-anchor", "middle")
         .attr("dy", "0.35em");
 
+      //change border size depending on content
       var bbox = tooltipText.node().getBBox();
 
+      //change width and heigh
       tooltipBg
         .attr("width", bbox.width + 16)
         .attr("height", bbox.height + 16)
         .attr("x", bbox.x - 8)
         .attr("y", bbox.y - 8);
 
+      //position tooltip
       tooltip
         .attr(
           "transform",

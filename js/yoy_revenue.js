@@ -27,6 +27,7 @@ d3.csv("./resource/data/gamingIndustry.csv").then(function (data) {
     "Total",
   ];
 
+  //group data by "allGroup"
   const dataReady = allGroup.map(function (grpName) {
     return {
       name: grpName,
@@ -35,7 +36,6 @@ d3.csv("./resource/data/gamingIndustry.csv").then(function (data) {
       }),
     };
   });
-  // console.log(dataReady);
 
   // A color scale: one color for each group
   const myColor = d3.scaleOrdinal().domain(allGroup).range(d3.schemeSet2);
@@ -72,14 +72,13 @@ d3.csv("./resource/data/gamingIndustry.csv").then(function (data) {
     .style("stroke-width", 4)
     .style("fill", "none");
 
+  //add the dots
   svg
-    // First we need to enter in a group
     .selectAll(".dotGroup")
     .data(dataReady)
     .join("g")
     .attr("class", (d) => d.name.replace(/ /g, "_"))
     .style("fill", (d) => myColor(d.name))
-    // Second we need to enter in the 'values' part of this group
     .selectAll(".dot")
     .data((d) => d.values)
     .join("circle")
@@ -141,6 +140,7 @@ d3.csv("./resource/data/gamingIndustry.csv").then(function (data) {
   // Select the "OnlineGames" label and move it up by 20px
   svg.select("#OnlineGames").attr("y", -10);
 
+  // add Y label
   svg
     .append("text")
     .attr("transform", "rotate(-90)")
@@ -151,6 +151,7 @@ d3.csv("./resource/data/gamingIndustry.csv").then(function (data) {
     .attr("font-size", "20")
     .text("Billions($)");
 
+  //add title
   svg
     .append("text")
     .attr("x", width - 190)

@@ -1,4 +1,4 @@
-import { getCurrentPosition } from "./script.js";
+import { getCurrentPosition } from "./script.js"; //get page number
 
 d3.csv(
   "https://raw.githubusercontent.com/kc2029/F21DV_CW2/main/resource/data/onlineGambling.csv"
@@ -17,9 +17,9 @@ d3.csv(
     .append("g")
     .attr("transform", `translate(${margin.left},${margin.top})`);
 
+  //first row value except the first one
   const subgroups = data.columns.slice(1);
   const groups = data.map((d) => d.group);
-  // console.log(subgroups);
 
   // Add X axis
   const x = d3.scaleBand().domain(groups).range([0, width]).padding([0.2]);
@@ -39,7 +39,7 @@ d3.csv(
   const y = d3.scaleLinear().domain([0, 35]).range([height, 0]);
   svg.append("g").call(d3.axisLeft(y));
 
-  // color palette
+  // color palette, 9 colour.
   const color = d3
     .scaleOrdinal()
     .domain(subgroups)
@@ -62,17 +62,19 @@ d3.csv(
   function mouseover(event) {
     // Get the class of the hovered element
     const hoveredClass = d3.select(this).attr("id");
-    // console.log(hoveredClass);
     // Hide all bars except those with the hovered class
     svg
-      .selectAll(".groupbar:not(#" + hoveredClass + ")")
+      .selectAll(".groupbar:not(#" + hoveredClass + ")") //select everything else
       .transition()
       .duration(500)
       .style("opacity", 0);
   }
 
+  /**
+   * On mouse leave, set everything visible
+   */
   function mouseleave() {
-    // Show all bars
+    // Create the group bars
     svg
       .selectAll(".groupbar")
       .interrupt()
@@ -81,6 +83,7 @@ d3.csv(
       .style("opacity", 1);
   }
 
+  //update the page number at set interval, and start the transition at page 1
   let intervalId = setInterval(() => {
     const position = getCurrentPosition();
 

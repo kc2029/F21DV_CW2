@@ -1,4 +1,4 @@
-// Parse the Data
+// Prevalance of games with Cosmetic
 d3.csv(
   "https://raw.githubusercontent.com/kc2029/F21DV_CW2/main/resource/data/gTrend.csv"
 ).then(function (data) {
@@ -7,6 +7,7 @@ d3.csv(
     width = 850 - margin.left - margin.right,
     height = 500 - margin.top - margin.bottom;
 
+  //select the html
   const svg = d3
     .select("#gameTrendSVG")
     .append("svg")
@@ -20,10 +21,13 @@ d3.csv(
     .append("g")
     .attr("transform", `translate(${margin.left},${margin.top})`);
 
+  //parse first column into time object
   const parseDate = d3.timeParse("%d/%m/%Y");
 
   // Format the data
   const allGroup = ["LootBox", "Pay to Win", "Cosmetic"];
+
+  //group data by name(allGroup)
   const dataReady = allGroup.map(function (grpName) {
     return {
       name: grpName,
@@ -33,11 +37,11 @@ d3.csv(
       }),
     };
   });
-  //console.log(dataReady);
 
   // A color scale: one color for each group
   const myColor = d3.scaleOrdinal().domain(allGroup).range(d3.schemeSet2);
 
+  // X axis scale with date object years
   const x = d3
     .scaleTime()
     .domain(d3.extent(data, (d) => new Date(d.year)))
@@ -48,11 +52,11 @@ d3.csv(
     .attr("transform", `translate(0, ${height})`)
     .call(d3.axisBottom(x).tickFormat(d3.timeFormat("%Y")));
 
-  // Add Y axis
+  // Add Y axis scale to 0 to 100%
   const y = d3.scaleLinear().domain([0, 100]).range([height, 0]);
   svg.append("g").call(d3.axisLeft(y));
 
-  // Add the lines
+  // draw the lines
   const line = d3
     .line()
     .x((d) => x(d.time))
@@ -68,7 +72,7 @@ d3.csv(
     .style("fill", "none");
 
   /**
-   * Calculate and draw line of best fit
+   * Calculate and draw line of best fit with linear regression
    * @date 26/03/2023 - 18:23:51
    */
   function lineBestFit() {
@@ -95,6 +99,7 @@ d3.csv(
 
   let lineVisible = false;
 
+  //add line of best fit button
   const button = svg
     .append("g") // create a new <g> element to contain the button and text
     .attr("id", "bestFitButton")
@@ -126,25 +131,6 @@ d3.csv(
     .style("fill", "white")
     .style("font-size", "14px");
 
-  // //dots
-  // svg
-  //   // First we need to enter in a group
-  //   .selectAll(".dotGroup")
-  //   .data(dataReady)
-  //   .join("g")
-  //   .attr("class", (d) => d.name.replace(/ /g, "_"))
-  //   .style("fill", (d) => color(d.name))
-
-  //   // Second we need to enter in the 'values' part of this group
-  //   .selectAll(".dot")
-  //   .data((d) => d.values)
-  //   .join("circle")
-  //   .attr("class", "dot")
-  //   .attr("cx", (d) => x(d.time))
-  //   .attr("cy", (d) => y(d.value))
-  //   .attr("stroke", "white")
-  //   .attr("r", 1);
-
   // Add a legend at the end of each line
   svg
     .selectAll("myLabels")
@@ -165,7 +151,7 @@ d3.csv(
     .style("font-size", 15)
     .attr("id", (d) => d.name.replaceAll(" ", "")) // assign unique id to each label
     .on("click", function (event, d) {
-      // is the element currently visible?
+      // on click change visibility on line depending on which name is clicked
       currentOpacity = d3
         .selectAll("." + d.name.replace(/ /g, "_"))
         .style("opacity");
@@ -181,7 +167,7 @@ d3.csv(
         .style("opacity", currentOpacity == 1 ? 0 : 1);
     });
 
-  svg.select("#OnlineGames").attr("y", -10);
+  svg.select("#OnlineGames").attr("y", -10); //move label lower to avoid stacking
 
   svg
     .append("text")

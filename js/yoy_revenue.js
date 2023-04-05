@@ -1,23 +1,22 @@
-// set the dimensions and margins of the graph
-const margin = { top: 70, right: 150, bottom: 70, left: 60 },
-  width = 760 - margin.left - margin.right,
-  height = 550 - margin.top - margin.bottom;
-
-const svg = d3
-  .select("#yoyBar")
-  .append("svg")
-  .attr("id", "yoyBar")
-  .attr(
-    "viewBox",
-    `0 0 ${width + margin.left + margin.right} ${
-      height + margin.top + margin.bottom
-    }`
-  )
-  .append("g")
-  .attr("transform", `translate(${margin.left},${margin.top})`);
-
 // Parse the Data
 d3.csv("./resource/data/gamingIndustry.csv").then(function (data) {
+  // set the dimensions and margins of the graph
+  const margin = { top: 70, right: 150, bottom: 70, left: 60 },
+    width = 760 - margin.left - margin.right,
+    height = 550 - margin.top - margin.bottom;
+
+  const svg = d3
+    .select("#yoyBar")
+    .append("svg")
+    .attr("id", "yoyBar")
+    .attr(
+      "viewBox",
+      `0 0 ${width + margin.left + margin.right} ${
+        height + margin.top + margin.bottom
+      }`
+    )
+    .append("g")
+    .attr("transform", `translate(${margin.left},${margin.top})`);
   // Format the data
   const allGroup = [
     "Download Games",

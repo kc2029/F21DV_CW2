@@ -55,7 +55,7 @@ d3.csv(
     })
     .attr("stroke", "black")
     .attr("stroke-width", "5px");
-  console.log(data);
+  // console.log(data);
 
   // Draw circle dot for women
   svg
@@ -63,7 +63,7 @@ d3.csv(
     .data(data)
     .join("circle")
     .attr("cx", function (d) {
-      console.log(d.women);
+      //console.log(d.women);
       return x(d.women);
     })
     .attr("cy", function (d) {

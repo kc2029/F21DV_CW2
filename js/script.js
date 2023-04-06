@@ -31,7 +31,7 @@ container.addEventListener("wheel", (event) => {
     behavior: "smooth",
   });
   // console.log(Array.from(pages));
-  console.log(currentPosition);
+  console.log("page " + currentPosition);
 });
 
 //add even listen to arrow key

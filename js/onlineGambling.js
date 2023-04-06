@@ -173,7 +173,7 @@ d3.csv(
     .attr("text-anchor", "middle")
     .style("font-size", "25px")
     .style("font-weight", "bold")
-    .text("Percentage of people who gambled in last 4 week");
+    .text("Percentage of British people who gambled in last 4 week");
 
   // Y axis label
   svg

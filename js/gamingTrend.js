@@ -186,5 +186,5 @@ d3.csv(
     .attr("text-anchor", "middle")
     .style("font-size", "25px")
     .style("font-weight", "bold")
-    .text("Prevalance of games with Cosmetic, pay to win or lootbox");
+    .text("Prevalence of games with Cosmetic, pay to win or loot box");
 });

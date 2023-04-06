@@ -193,12 +193,12 @@ d3.csv(
 //Pie Chart
 //
 // set the dimensions and margins of the graph
-const width = 450,
-  height = 450,
-  margin = 40;
+const width = 500,
+  height = 500,
+  margin = 20;
 
 // The radius of the pieplot is half the width or half the height (smallest one). I subtract a bit of margin.
-const radius = Math.min(width, height) / 2 - margin;
+const radius = Math.min(width, height) / 2 - margin - 20;
 
 // append the svg object to the div called 'my_dataviz'
 const svg = d3
@@ -295,10 +295,86 @@ svg
 //Title Label
 svg
   .append("text")
-  .attr("x", width - 450)
-  .attr("y", margin.top / 2 - 60)
+  .attr("id", "pieTitle")
+  .attr("y", "-20px") // adjusted y position
   .attr("text-anchor", "middle")
-  .style("font-size", "16px")
+  .style("font-size", "18px")
   .style("font-weight", "bold")
   .style("fill", "white")
-  .text("EU gamer Demographic");
+  .append("tspan")
+  .text("EU Gamer Demographic")
+  .attr("x", width - 500)
+  .attr("dy", "1.2em")
+  .append("tspan")
+  .text("by age")
+  .attr("x", width - 500)
+  .attr("dy", "1.2em");
+
+const arcOver = d3
+  .arc()
+  .outerRadius(radius * 1)
+  .innerRadius(radius * 0.5);
+svg
+  .selectAll("allSlices")
+  .data(data_ready)
+  .join("path")
+  .attr("d", arc)
+  .attr("fill", (d) => color(d.data[0]))
+  .attr("stroke", "white")
+  .style("stroke-width", "2px")
+  .style("opacity", 0.7)
+  .on("mouseover", function (event, d) {
+    d3.select(this)
+      .transition()
+      .duration(200)
+      .attr("d", arcOver)
+      .style("opacity", 1)
+      .text();
+
+    // Add tooltip text
+    var tooltip = svg.append("g").attr("class", "tooltipDot");
+
+    //set up tooltip background
+    var tooltipBg = tooltip
+      .append("circle")
+
+      .style("fill", color(d.data[0]))
+      .style("stroke-width", "1px")
+      .attr("r", 99);
+
+    //return value of the dot as text
+    var tooltipText = tooltip
+      .append("text")
+      .attr("y", "-30px")
+      .style("text-anchor", "middle")
+      .attr("dy", "0.35em")
+      .style("fill", "white")
+      .style("font-size", "18px");
+
+    tooltipText
+      .append("tspan")
+      .text(d.data[0] + " years old accounts ")
+      .style("font-weight", "bold")
+      .attr("x", 0)
+      .attr("dy", "1.2em");
+
+    tooltipText
+      .append("tspan")
+      .text("for " + d.data[1] + "% of EU Gamer")
+      .attr("font-weight", "bold")
+      .attr("x", 0)
+      .attr("dy", "1.2em");
+
+    svg.select("#pieTitle").style("opacity", 0);
+
+    //position tooltip centriod of each slice
+    // tooltip.attr("transform", function () {
+    //   var centroid = arcOver.centroid(d);
+    //    return "translate(" + centroid[0] + "," + centroid[1] + ")";
+    // });
+  })
+  .on("mouseout", function (event, d) {
+    d3.select(this).transition().duration(200).attr("d", arc);
+    svg.select(".tooltipDot").remove();
+    svg.select("#pieTitle").style("opacity", 1);
+  });

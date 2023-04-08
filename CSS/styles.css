@@ -1,90 +1,91 @@
-/* # for id | . for class */
 body {
   background-color: black;
 }
 
 #container {
   height: 100vh;
-  max-width: 1920px;
-  width: 100%;
+  max-width: calc(100vh * 16 / 9);
+  overflow: hidden;
+  background-size: contain;
 
   margin: 0 auto;
   overflow: hidden;
   background-size: contain;
-  /* background-image: url("https://raw.githubusercontent.com/kc2029/F21DV_CW2/main/resource/gamepad-1532528_960_720.jpg"); */
 }
+
 .content {
-  height: 100vh;
-  max-width: 1920px;
-  width: 100%;
   margin: 0 auto;
   overflow: hidden;
 }
 
 /* Title Page CSS */
 #page1 {
+  max-width: auto;
+  height: 100vh;
   background-image: url("https://raw.githubusercontent.com/kc2029/F21DV_CW2/main/resource/image/titlePage.jpg");
   background-size: cover;
   background-position: center center;
   display: flex;
   justify-content: center;
   flex-direction: column;
-  /* align-items: center; */
-  width: 100%;
 }
 
 #title1 {
-  font-size: 50px;
+  font-size: 5vh;
   color: white;
   text-align: center;
   font-weight: bold;
-  margin-top: 450px;
+  margin-top: 35vh;
 }
 
 #instruction {
-  font-size: 20px;
+  font-size: 2vh;
   color: white;
   text-align: center;
 }
 #disclaimer {
-  font-size: 20px;
+  font-size: 2vh;
   color: rgb(251, 255, 13);
   text-align: center;
-  margin-top: 450px;
+  margin-top: 35vh;
 }
-/* Page 2 CSS */
+
+/* Page 3 CSS Overview of UK gaming industry */
 
 #page2 {
+  max-width: auto;
+  height: 100vh;
   display: flex;
   flex-direction: column;
-  background-color: white;
+  background-color: rgb(255, 253, 253);
   background-size: contain;
   background-image: url("https://raw.githubusercontent.com/kc2029/F21DV_CW2/main/resource/image/controller1.jpg");
+  background-size: cover;
+  background-position: center center;
   position: relative;
 }
 
 #yoyBar {
   background-color: rgba(255, 253, 253, 0.5);
   position: absolute;
-  top: 40%;
-  right: 30%;
-  transform: translate(50%, -30%);
+  top: 40vh;
+  right: 30vw;
+  transform: translate(50%, -30%) scale(0.9);
   width: 1000px;
   height: 600px;
 }
 
 #p2Title {
   color: white;
-  font-size: 50px;
-  margin-left: 50px;
+  font-size: 3vw;
+  margin-left: 2vw;
 }
 
 #p2p1 {
-  font-size: 35px;
-  margin-left: 50px;
-  margin-top: 190px;
-
-  max-width: 700px;
+  font-size: 25px;
+  margin-left: 2vw;
+  margin-top: 5vh;
+  max-width: 500px;
   background-color: rgba(255, 253, 253, 0.7);
   border: 1px solid #000000;
   border-radius: 5px;
@@ -93,13 +94,15 @@ body {
   color: #000000;
   font-family: Arial, sans-serif;
   font-weight: normal;
-  padding: 10px;
+  padding: 2vw;
   position: relative;
   text-align: left;
 }
 
-/* Page 3 CSS */
+/* Page 2 Percentage of UK population that play video games CSS */
 #page3 {
+  max-width: auto;
+  height: 100vh;
   display: flex;
   flex-direction: column;
   background-color: rgb(255, 253, 253);
@@ -115,7 +118,7 @@ body {
   position: absolute;
   top: 40%;
   right: 30%;
-  transform: translate(-20%, -30%);
+  transform: translate(-20%, -30%) scale(0.8);
   width: 1000px;
   height: 700px;
 }
@@ -123,9 +126,9 @@ body {
 #gameReachPie {
   /* background-color: rgba(255, 253, 253, 0.5); */
   position: absolute;
-  top: 0%;
+  top: -10%;
   right: 30%;
-  transform: translate(95%, 0%);
+  transform: translate(95%, 0%) scale(0.7);
   width: 1000px;
   height: 700px;
 }
@@ -137,12 +140,11 @@ body {
 }
 
 #p3p1 {
-  font-size: 35px;
-  margin-left: 50px;
-  margin-top: 190px;
-
-  max-width: 600px;
-  background-color: rgba(255, 253, 253, 0.6);
+  font-size: 25px;
+  margin-left: 2vw;
+  margin-top: 10vh;
+  max-width: 700px;
+  background-color: rgba(255, 253, 253, 0.7);
   border: 1px solid #000000;
   border-radius: 5px;
   border-width: 1px;
@@ -150,18 +152,20 @@ body {
   color: #000000;
   font-family: Arial, sans-serif;
   font-weight: normal;
-  padding: 10px;
+  padding: 2vw;
   position: relative;
   text-align: left;
-  transform: translate(190%, 25%);
+  transform: translate(105%, 20%) scale(0.8);
 }
 
 path {
   cursor: pointer;
 }
 
-/* page 4 CSS */
+/* page 4 CSS Revenue split of the UK gaming Industry*/
 #page4 {
+  max-width: auto;
+  height: 100vh;
   display: flex;
   flex-direction: column;
   background-color: rgb(255, 253, 253);
@@ -189,7 +193,7 @@ path {
 }
 
 #p4p1 {
-  font-size: 35px;
+  font-size: 25px;
   margin-left: 50px;
   margin-top: 190px;
 
@@ -205,11 +209,13 @@ path {
   padding: 10px;
   position: relative;
   text-align: left;
-  transform: translate(10%, -7%);
+  transform: translate(0%, -7%);
 }
 
-/* page 5 CSS */
+/* page 5 CSS Revenue split of the UK gaming Industry */
 #page5 {
+  max-width: auto;
+  height: 100vh;
   display: flex;
   flex-direction: column;
   background-color: rgb(109, 104, 104);
@@ -225,7 +231,7 @@ path {
   position: absolute;
   top: 40%;
   right: 30%;
-  transform: translate(50%, -60%);
+  transform: translate(50%, -50%);
   width: 850px;
   height: 500px;
 }
@@ -237,7 +243,7 @@ path {
 }
 
 #p5p1 {
-  font-size: 35px;
+  font-size: 25px;
   margin-left: 50px;
   margin-top: 190px;
 
@@ -253,15 +259,15 @@ path {
   padding: 10px;
   position: relative;
   text-align: left;
-  transform: translate(10%, -7%);
+  transform: translate(10%, -25%);
 }
 
 #p5p2 {
-  font-size: 35px;
+  font-size: 25px;
   margin-left: 700px;
   margin-top: -130px;
 
-  max-width: 900px;
+  max-width: 950px;
   background-color: rgba(255, 255, 255, 0.6);
   border: 1px solid #000000;
   border-radius: 5px;
@@ -273,7 +279,7 @@ path {
   padding: 10px;
   position: relative;
   text-align: left;
-  transform: translate(20%, -50%);
+  transform: translate(0%, 5%);
 }
 
 /* page 6 CSS */
@@ -284,6 +290,8 @@ path {
 }
 
 #page6 {
+  max-width: auto;
+  height: 100vh;
   display: flex;
   flex-direction: column;
   background-color: rgb(252, 248, 248);
@@ -304,13 +312,13 @@ path {
   position: absolute;
   top: 40%;
   right: 30%;
-  transform: translate(-70%, -60%);
+  transform: translate(-60%, -50%);
   width: 750px;
   height: 500px;
 }
 
 #p6p1 {
-  font-size: 35px;
+  font-size: 25px;
 
   max-width: 750px;
   background-color: rgba(255, 255, 255, 0.6);
@@ -324,11 +332,11 @@ path {
   padding: 10px;
   position: relative;
   text-align: left;
-  transform: translate(120%, 0%);
+  transform: translate(120%, -40%);
 }
 
 #p6p2 {
-  font-size: 35px;
+  font-size: 25px;
   font-weight: bold;
   max-width: 750px;
   max-height: 350px;
@@ -343,11 +351,11 @@ path {
   padding: 10px;
   position: relative;
   text-align: left;
-  transform: translate(7%, -15%);
+  transform: translate(120%, -20%);
 }
 
 #p6p3 {
-  font-size: 35px;
+  font-size: 25px;
   font-weight: bold;
   width: 750px;
   max-width: 750px;
@@ -362,7 +370,7 @@ path {
   padding: 10px;
   position: relative;
   text-align: left;
-  transform: translate(112%, -110%);
+  transform: translate(-120%, -90%);
 }
 
 #list1 {
@@ -371,6 +379,8 @@ path {
 
 /* CSS for page 7 */
 #page7 {
+  max-width: auto;
+  height: 100vh;
   display: flex;
   flex-direction: column;
   background-color: rgb(161, 153, 153);
@@ -391,14 +401,14 @@ path {
   position: absolute;
   top: 40%;
   right: 30%;
-  transform: translate(-45%, -35%);
+  transform: translate(-25%, -25%);
   width: 900px;
   height: 700px;
 }
 #p7p1 {
-  font-size: 35px;
+  font-size: 25px;
   font-weight: bold;
-  max-width: 750px;
+  max-width: 650px;
 
   background-color: rgba(255, 255, 255, 0.6);
   border: 1px solid #000000;
@@ -411,5 +421,5 @@ path {
   padding: 10px;
   position: relative;
   text-align: left;
-  transform: translate(135%, -15%);
+  transform: translate(150%, -5%);
 }

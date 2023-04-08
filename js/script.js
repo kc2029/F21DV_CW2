@@ -1,8 +1,3 @@
-// const container = document.getElementById("container");
-// const content1 = document.getElementById("page1");
-// const content2 = document.getElementById("page2");
-// const content3 = document.getElementById("page3");
-
 //initialise page count as currentPosition at 0
 export let currentPosition = 0;
 
@@ -19,9 +14,9 @@ const pageCountMax = pages.length - 1;
 
 //add even listen to wheel scroll
 container.addEventListener("wheel", (event) => {
-  //disable defaul scroll action
+  //disable default scroll action
   event.preventDefault();
-  const direction = event.deltaY > 0 ? 1 : -1;
+  const direction = event.deltaY > 0 ? 1 : -1; //key track of scroll event(page number)
   currentPosition += direction;
   //limit max and min page number
   if (currentPosition > pageCountMax) currentPosition = pageCountMax;

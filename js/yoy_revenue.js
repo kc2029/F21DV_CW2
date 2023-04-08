@@ -1,5 +1,7 @@
 // Parse the Data
-d3.csv("./resource/data/gamingIndustry.csv").then(function (data) {
+d3.csv(
+  "https://raw.githubusercontent.com/kc2029/F21DV_CW2/main/resource/data/gamingIndustry.csv"
+).then(function (data) {
   // set the dimensions and margins of the graph
   const margin = { top: 70, right: 150, bottom: 70, left: 60 },
     width = 760 - margin.left - margin.right,

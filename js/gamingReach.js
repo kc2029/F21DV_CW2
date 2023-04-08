@@ -221,7 +221,6 @@ const data = {
 };
 
 // set the color scale
-// set the color scale
 const color = d3
   .scaleOrdinal()
   .domain(["6-10", "11-14", "15-24", "25-34", "35-44", "45-64", "65+"])
@@ -337,7 +336,6 @@ svg
     //set up tooltip background
     var tooltipBg = tooltip
       .append("circle")
-
       .style("fill", color(d.data[0]))
       .style("stroke-width", "1px")
       .attr("r", 99);
